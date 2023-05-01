@@ -29,18 +29,14 @@ final class GradientView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupGradientBackground()
+        configureGradientLayer()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupAppearance() {
-        
-    }
-    
-    private func setupGradientBackground() {
+    private func configureGradientLayer() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop.cgColor, colorBottom.cgColor]
         gradientLayer.startPoint = gradientFirstPoint
