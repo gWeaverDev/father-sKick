@@ -59,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				C1376EAD29FFAA3C00363ADC /* SupportingFiles */,
-				C1376EAA29FFA83E00363ADC /* Extensions */,
 				C1376E9629FFA3FB00363ADC /* AppDelegate.swift */,
 				C1376E9829FFA3FB00363ADC /* SceneDelegate.swift */,
 				C1376E9A29FFA3FB00363ADC /* ViewController.swift */,
@@ -81,6 +80,7 @@
 		C1376EAD29FFAA3C00363ADC /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				C1376EAA29FFA83E00363ADC /* Extensions */,
 				C1376EAE29FFAA4800363ADC /* Reusable */,
 			);
 			path = SupportingFiles;
