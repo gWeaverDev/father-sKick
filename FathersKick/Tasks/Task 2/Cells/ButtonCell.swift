@@ -29,17 +29,12 @@ final class ButtonCell: UITableViewCell {
     
     weak var delegate: ButtonCellDelegate?
     
-    private let button: UIButton = {
-        let button = UIButton(type: .custom)
-        button.showPulseAnimation()
-        return button
-    }()
+    private let button = UIButton(type: .custom)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupAppearance()
         configureButton()
-        button.tintColorDidChange()
         addButtonActions()
         setupLayout()
     }
@@ -76,17 +71,17 @@ final class ButtonCell: UITableViewCell {
         ])
         
     }
-    
-    func change() {
-        button.backgroundColor = .red
-    }
 }
 
-// Configure Button
+// MARK: - Configure Button
 
 extension ButtonCell {
     
     private func configureButton() {
+        
+        let image = UIImage(systemName: "arrow.right.circle.fill")?.withRenderingMode(.alwaysTemplate)
+        button.layer.cornerRadius = 10
+        button.showPulseAnimation()
         
         if #available(iOS 15.0, *) {
             var configuration = UIButton.Configuration.filled()
@@ -94,11 +89,7 @@ extension ButtonCell {
             configuration.baseForegroundColor = .white
             configuration.titleAlignment = .center
             configuration.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 14, bottom: 10, trailing: 14)
-            
-            configuration.image = UIImage(
-                systemName: "arrow.right.circle.fill",
-                withConfiguration: UIImage.SymbolConfiguration(scale: .large)
-            )
+            configuration.image = image
             configuration.imagePlacement = .trailing
             configuration.imagePadding = 8
             
@@ -111,33 +102,19 @@ extension ButtonCell {
                     break
                 }
             }
-            
-            
         } else {
             button.backgroundColor = .systemBlue
             button.titleLabel?.textAlignment = .center
             button.setTitleColor(.white, for: .normal)
             button.contentEdgeInsets = .init(top: 10, left: 14, bottom: 10, right: 14)
             button.titleLabel?.lineBreakMode = .byWordWrapping
-            
-            button.setImage(UIImage(systemName: "arrow.right.circle.fill")?
-                .withTintColor(.white, renderingMode: .alwaysOriginal), for: .normal)
+            button.setImage(image, for: .normal)
+            button.tintColor = .white
             button.semanticContentAttribute = .forceRightToLeft
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-            
-            button.layer.cornerRadius = 10
             button.isHighlighted = false
             button.adjustsImageWhenHighlighted = false
-            
-            if button.tintAdjustmentMode == .dimmed {
-                button.backgroundColor = .red
-            } else {
-                button.backgroundColor = .systemBlue
-            }
         }
-        
-        button.tintColorDidChange()
-        
     }
     
     private func addButtonActions() {
@@ -158,13 +135,16 @@ extension ButtonCell {
     
 }
 
-extension UIButton {
+extension ButtonCell {
     
-    override open func tintColorDidChange() {
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
         if tintAdjustmentMode == .dimmed {
-            backgroundColor = .red
+            button.backgroundColor = .gray
+            button.setTitleColor(.lightGray, for: .normal)
         } else {
-            backgroundColor = .systemBlue
+            button.backgroundColor = .systemBlue
+            button.setTitleColor(.white, for: .normal)
         }
     }
 }
