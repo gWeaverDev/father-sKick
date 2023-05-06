@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  WithGradientVC.swift
 //  FathersKick
 //
 //  Created by George Weaver on 01.05.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class WithGradientVC: UIViewController {
     
     enum Constants {
         static let gradientViewSize = CGSize(width: 100, height: 100)
